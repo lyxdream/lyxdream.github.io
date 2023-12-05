@@ -40,5 +40,5 @@ export default defineConfig({
     lastUpdatedText: '上次更新'
 
   },
-  ignoreDeadLinks: true
+  ignoreDeadLinks: true //忽略死链接解决构建报错
 })
