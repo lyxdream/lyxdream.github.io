@@ -33,8 +33,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
         {
             text: '前端基础',
             // collapsed: false,
-            link: '/fe-base/index',
-            items: []
+            link: '/fe-base/index'
         },
         {
             text: 'html/css',
@@ -59,7 +58,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
                 },
                 {
                     text: 'html',
-                    items: []
+                    link: ''
                 }
             ]
         },

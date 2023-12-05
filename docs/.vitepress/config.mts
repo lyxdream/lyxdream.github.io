@@ -37,7 +37,8 @@ export default defineConfig({
       next: '下一篇',
     },
     darkModeSwitchLabel: '模式', //在移动端生效
-    lastUpdatedText: '上次更新',
+    lastUpdatedText: '上次更新'
 
-  }
+  },
+  ignoreDeadLinks: true
 })
