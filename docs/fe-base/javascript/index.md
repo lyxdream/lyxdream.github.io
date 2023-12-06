@@ -1,4 +1,4 @@
-#### 目录
+#### javascript
 
 <!-- -  高阶函数
    [before函数和after函数](higherFunction)
