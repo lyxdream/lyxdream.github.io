@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "cz": "czg",
-    "commit": "git-cz",
     "lint:staged": "nano-staged",
     "lint": "eslint ./docs  --ext .js,.ts,.tsx,.vue,.mjs,.cjs",
     "docs:dev": "vitepress dev docs --port=8735 --host 0.0.0.0",
@@ -43,8 +42,7 @@
   },
   "config": {
     "commitizen": {
-      "path": "node_modules/cz-git",
-      "useEmoji": true
+      "path": "node_modules/cz-git"
     }
   }
 }
