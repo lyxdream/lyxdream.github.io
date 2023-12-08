@@ -201,6 +201,10 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
                     link: '/note/gitCommit'
                 },
                 {
+                    text: 'git commit规范（新）',
+                    link: '/note/commit-rule'
+                },
+                {
                     text: 'nvm的安装和使用',
                     link: '/note/nvm'
                 },
