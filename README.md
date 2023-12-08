@@ -1,10 +1,10 @@
 # 这里是 大侠 的博客，希望我的文章对你有所帮助，我们一起升级打怪，一起进阶
 
-## 计算机基础
+## [计算机基础](https://lyxdream.github.io/computer/)
 
--   [数据结构与算法](./algorithm/index.md)
+-   数据结构与算法
 
--   [设计模式](./designPattern/index.md)
+-   设计模式
 
 -   网络
 
@@ -12,7 +12,7 @@
 
 -   编译原理
 
-## 前端基础
+## [前端基础](https://lyxdream.github.io/fe-base/)
 
 -   TypeScript
 -   Node
@@ -28,7 +28,7 @@
 -   网络安全
 -   浏览器渲染原理
 
-## 源码阅读
+## [源码阅读](https://lyxdream.github.io/source-code/)
 
 -   vue2源码
 -   vue3源码
@@ -38,7 +38,7 @@
 -   elementPlus
 -   antd
 
-## 实践经验
+## [实践经验](https://lyxdream.github.io/note/)
 
 -   小程序
     -   小程序(授权)获取当前位置
@@ -50,7 +50,7 @@
 -   播放器
 -
 
-## 开源项目
+## [开源项目](https://lyxdream.github.io/open-source-projects/)
 
 -   常用工具包
 -   低代码
@@ -64,7 +64,7 @@
 -   vscode录屏插件
 -   谷歌录屏插件
 
-## 面试宝典
+## [面试宝典](https://lyxdream.github.io/interview/)
 
 -   数据类型转换
 -   浏览器事件环
@@ -74,4 +74,4 @@
 -   框架原理
 -   面试相关问题（面试八股文，性能优化，框架原理）
 
-## 大侠
+## [大侠](https://lyxdream.github.io/my/)
