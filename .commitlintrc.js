@@ -30,7 +30,7 @@ module.exports = {
             {
                 value: 'feat',
                 name: 'feat:     ✨  A new feature',
-                emoji: ':sparkles:'
+                emoji: '✨'
             },
             { value: 'fix', name: 'fix:      🐛  A bug fix', emoji: ':bug:' },
             {
