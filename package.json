@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "cz": "czg",
+    "czg:emoji": "czg emoji",
     "lint:staged": "nano-staged",
     "lint": "eslint ./docs  --ext .js,.ts,.tsx,.vue,.mjs,.cjs",
     "docs:dev": "vitepress dev docs --port=8735 --host 0.0.0.0",
