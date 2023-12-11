@@ -32,54 +32,54 @@ module.exports = {
                 name: 'feat:     ✨  A new feature',
                 emoji: '✨'
             },
-            { value: 'fix', name: 'fix:      🐛  A bug fix', emoji: ':bug:' },
+            { value: 'fix', name: 'fix:      🐛  A bug fix', emoji: '🐛' },
             {
                 value: 'docs',
                 name: 'docs:     📝  Documentation only changes',
-                emoji: ':memo:'
+                emoji: '📝'
             },
             {
                 value: 'style',
                 name: 'style:    💄  Changes that do not affect the meaning of the code',
-                emoji: ':lipstick:'
+                emoji: '💄'
             },
             {
                 value: 'refactor',
                 name: 'refactor: ♻️   A code change that neither fixes a bug nor adds a feature',
-                emoji: ':recycle:'
+                emoji: '♻️'
             },
             {
                 value: 'perf',
                 name: 'perf:     ⚡️  A code change that improves performance',
-                emoji: ':zap:'
+                emoji: '⚡️'
             },
             {
                 value: 'test',
                 name: 'test:     ✅  Adding missing tests or correcting existing tests',
-                emoji: ':white_check_mark:'
+                emoji: '✅ '
             },
             {
                 value: 'build',
                 name: 'build:    📦️   Changes that affect the build system or external dependencies',
-                emoji: ':package:'
+                emoji: '📦️'
             },
             {
                 value: 'ci',
                 name: 'ci:       🎡  Changes to our CI configuration files and scripts',
-                emoji: ':ferris_wheel:'
+                emoji: '🎡'
             },
             {
                 value: 'chore',
                 name: "chore:    🔨  Other changes that don't modify src or test files",
-                emoji: ':hammer:'
+                emoji: '🔨 '
             },
             {
                 value: 'revert',
                 name: 'revert:   ⏪️  Reverts a previous commit',
-                emoji: ':rewind:'
+                emoji: '⏪️'
             }
         ],
-        useEmoji: true,
+        useEmoji: false,
         emojiAlign: 'center',
         useAI: false,
         aiNumber: 1,
