@@ -1,5 +1,4 @@
 // .commitlintrc.js
-// /** @type {import('cz-git').UserConfig} */
 /** @type {import('cz-git').UserConfig} */
 module.exports = {
     // extends: ['@commitlint/config-conventional'],
@@ -35,17 +34,17 @@ module.exports = {
             },
             {
                 value: ':bug: fix',
-                name: 'fix:      🐛  A bug fix',
+                name: '🐛 fix:        A bug fix',
                 emoji: '🐛'
             },
             {
                 value: ':memo: docs',
-                name: 'docs:     📝  Documentation only changes',
+                name: '📝  docs:     Documentation only changes',
                 emoji: '📝'
             },
             {
                 value: ':lipstick: style',
-                name: 'style:    💄  Changes that do not affect the meaning of the code',
+                name: '💄  style:    Changes that do not affect the meaning of the code',
                 emoji: '💄'
             },
             {
@@ -84,7 +83,7 @@ module.exports = {
                 emoji: '⏪️'
             }
         ],
-        useEmoji: false,
+        useEmoji: true,
         emojiAlign: 'center',
         useAI: false,
         aiNumber: 1,
