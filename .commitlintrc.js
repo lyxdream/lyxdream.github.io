@@ -30,7 +30,7 @@ module.exports = {
         types: [
             {
                 value: ':sparkles: feat',
-                name: 'feat:     ✨  A new feature',
+                name: ' ✨ feat:     A new feature',
                 emoji: '✨'
             },
             {
