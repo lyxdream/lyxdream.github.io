@@ -2,7 +2,8 @@
 // /** @type {import('cz-git').UserConfig} */
 /** @type {import('cz-git').UserConfig} */
 module.exports = {
-    extends: ['@commitlint/config-conventional'],
+    // extends: ['@commitlint/config-conventional'],
+    extends: ['gitmoji'],
     rules: {
         // @see: https://commitlint.js.org/#/reference-rules
     },
@@ -28,53 +29,57 @@ module.exports = {
         },
         types: [
             {
-                value: 'feat',
+                value: ':sparkles: feat',
                 name: 'feat:     ✨  A new feature',
                 emoji: '✨'
             },
-            { value: 'fix', name: 'fix:      🐛  A bug fix', emoji: '🐛' },
             {
-                value: 'docs',
+                value: ':bug: fix',
+                name: 'fix:      🐛  A bug fix',
+                emoji: '🐛'
+            },
+            {
+                value: ':memo: docs',
                 name: 'docs:     📝  Documentation only changes',
                 emoji: '📝'
             },
             {
-                value: 'style',
+                value: ':lipstick: style',
                 name: 'style:    💄  Changes that do not affect the meaning of the code',
                 emoji: '💄'
             },
             {
-                value: 'refactor',
+                value: ':recycle: refactor',
                 name: 'refactor: ♻️   A code change that neither fixes a bug nor adds a feature',
                 emoji: '♻️'
             },
             {
-                value: 'perf',
+                value: ':zap: perf',
                 name: 'perf:     ⚡️  A code change that improves performance',
                 emoji: '⚡️'
             },
             {
-                value: 'test',
+                value: ':white_check_mark: test',
                 name: 'test:     ✅  Adding missing tests or correcting existing tests',
                 emoji: '✅ '
             },
             {
-                value: 'build',
+                value: ':package: build',
                 name: 'build:    📦️   Changes that affect the build system or external dependencies',
                 emoji: '📦️'
             },
             {
-                value: 'ci',
+                value: ':ferris_wheel: ci',
                 name: 'ci:       🎡  Changes to our CI configuration files and scripts',
                 emoji: '🎡'
             },
             {
-                value: 'chore',
+                value: ':hammer: chore',
                 name: "chore:    🔨  Other changes that don't modify src or test files",
                 emoji: '🔨 '
             },
             {
-                value: 'revert',
+                value: ':rewind: revert',
                 name: 'revert:   ⏪️  Reverts a previous commit',
                 emoji: '⏪️'
             }
