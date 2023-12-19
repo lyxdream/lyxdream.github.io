@@ -49,41 +49,41 @@ module.exports = {
             },
             {
                 value: ':recycle: refactor',
-                name: 'refactor: ♻️   A code change that neither fixes a bug nor adds a feature',
+                name: '♻️  refactor:   A code change that neither fixes a bug nor adds a feature',
                 emoji: '♻️'
             },
             {
                 value: ':zap: perf',
-                name: 'perf:     ⚡️  A code change that improves performance',
+                name: '⚡️ perf:       A code change that improves performance',
                 emoji: '⚡️'
             },
             {
                 value: ':white_check_mark: test',
-                name: 'test:     ✅  Adding missing tests or correcting existing tests',
+                name: '✅  test:     Adding missing tests or correcting existing tests',
                 emoji: '✅ '
             },
             {
                 value: ':package: build',
-                name: 'build:    📦️   Changes that affect the build system or external dependencies',
+                name: ' 📦️  build:    Changes that affect the build system or external dependencies',
                 emoji: '📦️'
             },
             {
                 value: ':ferris_wheel: ci',
-                name: 'ci:       🎡  Changes to our CI configuration files and scripts',
+                name: ' 🎡  ci:   Changes to our CI configuration files and scripts',
                 emoji: '🎡'
             },
             {
                 value: ':hammer: chore',
-                name: "chore:    🔨  Other changes that don't modify src or test files",
+                name: "  🔨  chore:   Other changes that don't modify src or test files",
                 emoji: '🔨 '
             },
             {
                 value: ':rewind: revert',
-                name: 'revert:   ⏪️  Reverts a previous commit',
+                name: ' ⏪️ revert:   Reverts a previous commit',
                 emoji: '⏪️'
             }
         ],
-        useEmoji: true,
+        useEmoji: false,
         emojiAlign: 'center',
         useAI: false,
         aiNumber: 1,

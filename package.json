@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "commit": "git-cz",
     "cz": "czg",
     "czg:emoji": "czg emoji",
     "lint:staged": "nano-staged",
