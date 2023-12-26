@@ -17,11 +17,13 @@ commitizen 的 adapter(适配器) 主要有以下几种：
     -   交互方式不友好。
     -   重复性输入的东西太多。
 
--   cz-customizable
+-   [cz-customizable](https://github.com/leoforfree/cz-customizable/tree/master)
+
     -   需要额外添加配置文件。
     -   仅支持上下选择式的交互方式。
     -   可支持的习惯型配置项少。
--   git-cz
+
+-   [git-cz](https://github.com/streamich/git-cz)
 
     -   可支持的自定义配置项少。
     -   需要额外添加配置文件。
@@ -40,6 +42,8 @@ commitizen 的 adapter(适配器) 主要有以下几种：
 -   表情在type前面显示
 
 -   commitizen + cz-conventional-changelog（ Angluar 规范版，无表情）
+
+安装依赖
 
 ```bash
  npm install commitizen  cz-conventional-changelog  -D
@@ -74,23 +78,173 @@ npm run commit
 
 效果如下：
 
-```
-
-```
-
 -   commitizen + git-cz (符合Angluar 规范，可以实现表情在subject前面的显示)
 
 ```bash
 npm install -D commitizen git-cz
 ```
 
+```json
+//package.json
+{
+    ....
+  "scripts": {
+    "commit": "git-cz"
+  },
+  "devDependencies": {
+    "commitizen": "^4.3.0",
+     "git-cz": "^4.9.0"
+  },
+  "config": {
+    "commitizen": {
+       "path": "git-cz"
+    }
+  }
+}
+```
+
 git-cz 工具它也是提供自定义配置的，但是配置项有限。在根目录添加 changelog.config.js
 
 ```js
-
+//changelog.config.js
+module.exports = {
+    disableEmoji: false,
+    format: '{type}{scope}: {emoji}{subject}',
+    list: [
+        'test',
+        'feat',
+        'fix',
+        'chore',
+        'docs',
+        'refactor',
+        'style',
+        'ci',
+        'perf'
+    ],
+    maxMessageLength: 64,
+    minMessageLength: 3,
+    questions: [
+        'type',
+        'scope',
+        'subject',
+        'body',
+        'breaking',
+        'issues',
+        'lerna'
+    ],
+    scopes: [],
+    types: {
+        chore: {
+            description: 'Build process or auxiliary tool changes',
+            emoji: '🤖',
+            value: 'chore'
+        },
+        ci: {
+            description: 'CI related changes',
+            emoji: '🎡',
+            value: 'ci'
+        },
+        docs: {
+            description: 'Documentation only changes',
+            emoji: '✏️',
+            value: 'docs'
+        },
+        feat: {
+            description: 'A new feature',
+            emoji: '🎸',
+            value: 'feat'
+        },
+        fix: {
+            description: 'A bug fix',
+            emoji: '🐛',
+            value: 'fix'
+        },
+        perf: {
+            description: 'A code change that improves performance',
+            emoji: '⚡️',
+            value: 'perf'
+        },
+        refactor: {
+            description:
+                'A code change that neither fixes a bug or adds a feature',
+            emoji: '💡',
+            value: 'refactor'
+        },
+        release: {
+            description: 'Create a release commit',
+            emoji: '🏹',
+            value: 'release'
+        },
+        style: {
+            description:
+                'Markup, white-space, formatting, missing semi-colons...',
+            emoji: '💄',
+            value: 'style'
+        },
+        test: {
+            description: 'Adding missing tests',
+            emoji: '💍',
+            value: 'test'
+        },
+        messages: {
+            type: "Select the type of change that you're committing:",
+            customScope: 'Select the scope this component affects:',
+            subject:
+                'Write a short, imperative mood description of the change:\n',
+            body: 'Provide a longer description of the change:\n ',
+            breaking: 'List any breaking changes:\n',
+            footer: 'Issues this commit closes, e.g #123:',
+            confirmCommit: 'The packages that this commit has affected\n'
+        }
+    }
+}
 ```
 
+在终端运行：
+
+```bash
+npm run commit
+```
+
+效果如下：
+
 -   commitizen + cz-customizable (可以实现表情在type前面显示，表情在type前面显示的时候不符合Angluar 规范)
+
+安装依赖
+
+```bash
+ npm install commitizen  cz-customizable  -D
+```
+
+配置如下：
+
+```json
+//package.json
+{
+    "scripts": {
+        "commit": "git-cz"
+    },
+    "devDependencies": {
+        "commitizen": "^4.3.0",
+        "cz-customizable": "^7.0.0"
+    },
+    "config": {
+        "commitizen": {
+            "path": "node_modules/cz-customizable"
+        }
+    }
+}
+```
+
+需要额外添加配置文件,在项目根目录下新建 .cz-config.js 配置文件，在该文件中对上述字段设置规则。官方github上有给出该文件写法的一个示例。 官方提供了一个[.cz-config.js](https://github.com/leoforfree/cz-customizable/blob/master/.cz-config.js)示例文件[cz-config-EXAMPLE.js](https://github.com/leoforfree/cz-customizable/blob/master/cz-config-EXAMPLE.js)，
+
+在终端运行：
+
+```bash
+npm run commit
+```
+
+效果如下：
 
 -   commitizen + cz-git
 
