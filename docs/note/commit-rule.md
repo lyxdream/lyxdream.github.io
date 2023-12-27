@@ -246,6 +246,8 @@ npm run commit
 
 效果如下：
 
+图如下所示：
+
 -   commitizen + cz-git
 
 ```bash
