@@ -11,7 +11,7 @@ adapter(适配器) : commitizen 命令行工具的 交互方式 插件。
 
 commitizen 的 adapter(适配器) 主要有以下几种：
 
--   cz-conventional-changelog
+-   [cz-conventional-changelog](https://github.com/commitizen/cz-conventional-changelog)
 
     -   支持的自定义配置项少。
     -   交互方式不友好。
@@ -28,7 +28,7 @@ commitizen 的 adapter(适配器) 主要有以下几种：
     -   可支持的自定义配置项少。
     -   需要额外添加配置文件。
 
--   cz-git
+-   [cz-git](https://cz-git.qbb.sh/zh/config/)
     -   OpenAI 支持, 让 AI 来辅助生成你 git commit 的描述信息。
     -   友好型命令行工具，“懒字优先” ！支持在命令行搜索和选择，减少拼写错误。
     -   轻量级，高度自定义, 但输出格式遵循标准的 Conventional Commits 规范。
@@ -41,7 +41,7 @@ commitizen 的 adapter(适配器) 主要有以下几种：
 -   表情在subject前面的显示
 -   表情在type前面显示
 
--   commitizen + cz-conventional-changelog（ Angluar 规范版，无表情）
+### commitizen + cz-conventional-changelog（ Angluar 规范版，无表情）
 
 安装依赖
 
@@ -78,7 +78,7 @@ npm run commit
 
 效果如下：
 
--   commitizen + git-cz (符合Angluar 规范，可以实现表情在subject前面的显示)
+### commitizen + git-cz (符合Angluar 规范，可以实现表情在subject前面的显示)
 
 ```bash
 npm install -D commitizen git-cz
@@ -208,7 +208,7 @@ npm run commit
 
 效果如下：
 
--   commitizen + cz-customizable (可以实现表情在type前面显示，表情在type前面显示的时候不符合Angluar 规范)
+### commitizen + cz-customizable (可以实现表情在type前面显示，表情在type前面显示的时候不符合Angluar 规范)
 
 安装依赖
 
@@ -238,17 +238,155 @@ npm run commit
 
 需要额外添加配置文件,在项目根目录下新建 .cz-config.js 配置文件，在该文件中对上述字段设置规则。官方github上有给出该文件写法的一个示例。 官方提供了一个[.cz-config.js](https://github.com/leoforfree/cz-customizable/blob/master/.cz-config.js)示例文件[cz-config-EXAMPLE.js](https://github.com/leoforfree/cz-customizable/blob/master/cz-config-EXAMPLE.js)，
 
+```js
+//.cz-config.js
+
+module.exports = {
+    types: [
+        {
+            value: 'feat',
+            name: 'feat: 新功能'
+        },
+        {
+            value: 'fix',
+            name: 'fix: 修复bug'
+        },
+        {
+            value: 'init',
+            name: 'init: 初始化'
+        },
+        {
+            value: ':pencil2: docs',
+            name: 'docs: 文档变更'
+        },
+        {
+            value: 'style',
+            name: 'style: 代码的样式美化'
+        },
+        {
+            value: 'refactor',
+            name: 'refactor: 重构'
+        },
+        {
+            value: 'perf',
+            name: 'perf: 性能优化'
+        },
+        {
+            value: 'test',
+            name: 'test: 测试'
+        },
+        {
+            value: 'revert',
+            name: 'revert: 回退'
+        },
+        {
+            value: 'build',
+            name: 'build: 打包'
+        },
+        {
+            value: 'chore',
+            name: 'chore: 构建/工程依赖/工具'
+        },
+        {
+            value: 'ci',
+            name: 'ci: CI related changes'
+        }
+    ],
+    messages: {
+        type: '请选择提交类型(必填)',
+        customScope: '请输入文件修改范围(可选)',
+        subject: '请简要描述提交(必填)',
+        body: '请输入详细描述(可选)',
+        breaking: '列出任何BREAKING CHANGES(可选)',
+        footer: '请输入要关闭的issue(可选)',
+        confirmCommit: '确定提交此说明吗？'
+    },
+    allowCustomScopes: true,
+    allowBreakingChanges: ['feat', 'fix'], // 当提交类型为feat、fix时才有破坏性修改选项
+    subjectLimit: 72
+}
+```
+
+如果需要在feat之前加表情包：把 types 字段修改为如下
+
+```js{3,4}
+//.cz-config.js
+module.exports = {
+  types: [
+    {
+      value: ':sparkles: feat',
+      name: '✨ feat: 新功能'
+    },
+    {
+      value: ":bug: fix",
+      name: '🐛 fix: 修复bug'
+    },
+    {
+      value: ':memo: docs',
+      name: '📝 docs: 文档变更'
+    },
+    {
+      value: ':lipstick: style',
+      name: '💄 style: 代码的样式美化'
+    },
+    {
+      value: ':recycle: refactor',
+      name: '♻️ refactor: 重构'
+    },
+    {
+      value: ':zap: perf',
+      name: '⚡️ perf: 性能优化'
+    },
+    {
+      value: ':white_check_mark:  test',
+      name: '✅ test: 测试'
+    },
+    {
+      value: ':rewind: revert',
+      name: '⏪️ revert: 回退'
+    },
+    {
+      value: ':hammer: chore',
+      name: '🔨 chore: 构建/工程依赖/工具'
+    },
+    {
+      value: ':ferris_wheel: ci',
+      name: '🎡 ci: CI 改变'
+    }
+  ],
+  messages: {
+    type: '请选择提交类型(必填)',
+    customScope: '请输入文件修改范围(可选)',
+    subject: '请简要描述提交(必填)',
+    body: '请输入详细描述(可选)',
+    breaking: '列出任何BREAKING CHANGES(可选)',
+    footer: '请输入要关闭的issue(可选)',
+    confirmCommit: '确定提交此说明吗？'
+  },
+  allowCustomScopes: true,
+  allowBreakingChanges: ['feat', 'fix'], // 当提交类型为feat、fix时才有破坏性修改选项
+  subjectLimit: 72
+};
+
+```
+
 在终端运行：
 
 ```bash
-npm run commit
+git cz
+# 或 npm run commit
 ```
 
 效果如下：
 
+:::tip 注意
+如果需要在type之前加表情，校验得时候需要更换commitlint-config-conventional （基于 Angular 约定），在type前面加表情不符合Angular规范
+
+:::
+
 图如下所示：
 
--   commitizen + cz-git
+### commitizen + cz-git
 
 ```bash
 npm install -D commitizen cz-git
@@ -274,6 +412,380 @@ npm install -D commitizen cz-git
 }
 ```
 
+配置文件.commitlintrc.js
+
+-   符合angular规范无表情
+
+```js
+** @type {import('cz-git').UserConfig} */
+module.exports = {
+    extends: ['@commitlint/config-conventional'],
+    rules: {
+        // @see: https://commitlint.js.org/#/reference-rules
+    },
+    prompt: {
+        alias: { fd: 'docs: fix typos' },
+        messages: {
+            type: "Select the type of change that you're committing:",
+            scope: 'Denote the SCOPE of this change (optional):',
+            customScope: 'Denote the SCOPE of this change:',
+            subject:
+                'Write a SHORT, IMPERATIVE tense description of the change:\n',
+            body: 'Provide a LONGER description of the change (optional). Use "|" to break new line:\n',
+            breaking:
+                'List any BREAKING CHANGES (optional). Use "|" to break new line:\n',
+            footerPrefixesSelect:
+                'Select the ISSUES type of changeList by this change (optional):',
+            customFooterPrefix: 'Input ISSUES prefix:',
+            footer: 'List any ISSUES by this change. E.g.: #31, #34:\n',
+            generatingByAI: 'Generating your AI commit subject...',
+            generatedSelectByAI: 'Select suitable subject by AI generated:',
+            confirmCommit:
+                'Are you sure you want to proceed with the commit above?'
+        },
+        types: [
+            {
+                value: 'feat',
+                name: ' feat:   ✨ A new feature',
+                emoji: '✨'
+            },
+            {
+                value: 'fix',
+                name: 'fix:       🐛  A bug fix',
+                emoji: '🐛'
+            },
+            {
+                value: 'docs',
+                name: 'docs:   📝 Documentation only changes',
+                emoji: '📝'
+            },
+            {
+                value: 'style',
+                name: 'style:  💄 Changes that do not affect the meaning of the code',
+                emoji: '💄'
+            },
+            {
+                value: 'refactor',
+                name: ' refactor:   ♻️  A code change that neither fixes a bug nor adds a feature',
+                emoji: '♻️'
+            },
+            {
+                value: 'perf',
+                name: 'perf:      ⚡️  A code change that improves performance',
+                emoji: '⚡️'
+            },
+            {
+                value: 'test',
+                name: 'test:    ✅   Adding missing tests or correcting existing tests',
+                emoji: '✅ '
+            },
+            {
+                value: 'build',
+                name: ' build:    📦️ Changes that affect the build system or external dependencies',
+                emoji: '📦️'
+            },
+            {
+                value: 'ci',
+                name: ' ci:  🎡 Changes to our CI configuration files and scripts',
+                emoji: '🎡'
+            },
+            {
+                value: 'chore',
+                name: " chore:   🔨  Other changes that don't modify src or test files",
+                emoji: '🔨 '
+            },
+            {
+                value: 'revert',
+                name: ' revert: ⏪️   Reverts a previous commit',
+                emoji: '⏪️'
+            }
+        ],
+        useEmoji: false,
+        emojiAlign: 'center',
+        useAI: false,
+        aiNumber: 1,
+        themeColorCode: '',
+        scopes: [],
+        allowCustomScopes: true,
+        allowEmptyScopes: true,
+        customScopesAlign: 'bottom',
+        customScopesAlias: 'custom',
+        emptyScopesAlias: 'empty',
+        upperCaseSubject: false,
+        markBreakingChangeMode: false,
+        allowBreakingChanges: ['feat', 'fix'],
+        breaklineNumber: 100,
+        breaklineChar: '|',
+        skipQuestions: [],
+        issuePrefixes: [
+            { value: 'closed', name: 'closed:   ISSUES has been processed' }
+        ],
+        customIssuePrefixAlign: 'top',
+        emptyIssuePrefixAlias: 'skip',
+        customIssuePrefixAlias: 'custom',
+        allowCustomIssuePrefix: true,
+        allowEmptyIssuePrefix: true,
+        confirmColorize: true,
+        maxHeaderLength: Infinity,
+        maxSubjectLength: Infinity,
+        minSubjectLength: 0,
+        scopeOverrides: undefined,
+        defaultBody: '',
+        defaultIssues: '',
+        defaultScope: '',
+        defaultSubject: ''
+    }
+}
+```
+
+-   符合angular规范，表情在subject前面的显示
+
+```js
+/** @type {import('cz-git').UserConfig} */
+module.exports = {
+    extends: ['@commitlint/config-conventional'],
+    rules: {
+        // @see: https://commitlint.js.org/#/reference-rules
+    },
+    prompt: {
+        alias: { fd: 'docs: fix typos' },
+        messages: {
+            type: "Select the type of change that you're committing:",
+            scope: 'Denote the SCOPE of this change (optional):',
+            customScope: 'Denote the SCOPE of this change:',
+            subject:
+                'Write a SHORT, IMPERATIVE tense description of the change:\n',
+            body: 'Provide a LONGER description of the change (optional). Use "|" to break new line:\n',
+            breaking:
+                'List any BREAKING CHANGES (optional). Use "|" to break new line:\n',
+            footerPrefixesSelect:
+                'Select the ISSUES type of changeList by this change (optional):',
+            customFooterPrefix: 'Input ISSUES prefix:',
+            footer: 'List any ISSUES by this change. E.g.: #31, #34:\n',
+            generatingByAI: 'Generating your AI commit subject...',
+            generatedSelectByAI: 'Select suitable subject by AI generated:',
+            confirmCommit:
+                'Are you sure you want to proceed with the commit above?'
+        },
+        types: [
+            {
+                value: 'feat',
+                name: ' feat:   ✨ A new feature',
+                emoji: '✨'
+            },
+            {
+                value: 'fix',
+                name: 'fix:       🐛  A bug fix',
+                emoji: '🐛'
+            },
+            {
+                value: 'docs',
+                name: 'docs:   📝 Documentation only changes',
+                emoji: '📝'
+            },
+            {
+                value: 'style',
+                name: 'style:  💄 Changes that do not affect the meaning of the code',
+                emoji: '💄'
+            },
+            {
+                value: 'refactor',
+                name: ' refactor:   ♻️  A code change that neither fixes a bug nor adds a feature',
+                emoji: '♻️'
+            },
+            {
+                value: 'perf',
+                name: 'perf:      ⚡️  A code change that improves performance',
+                emoji: '⚡️'
+            },
+            {
+                value: 'test',
+                name: 'test:    ✅   Adding missing tests or correcting existing tests',
+                emoji: '✅ '
+            },
+            {
+                value: 'build',
+                name: ' build:    📦️ Changes that affect the build system or external dependencies',
+                emoji: '📦️'
+            },
+            {
+                value: 'ci',
+                name: ' ci:  🎡 Changes to our CI configuration files and scripts',
+                emoji: '🎡'
+            },
+            {
+                value: 'chore',
+                name: " chore:   🔨  Other changes that don't modify src or test files",
+                emoji: '🔨 '
+            },
+            {
+                value: 'revert',
+                name: ' revert: ⏪️   Reverts a previous commit',
+                emoji: '⏪️'
+            }
+        ],
+        useEmoji: true,
+        emojiAlign: 'center',
+        useAI: false,
+        aiNumber: 1,
+        themeColorCode: '',
+        scopes: [],
+        allowCustomScopes: true,
+        allowEmptyScopes: true,
+        customScopesAlign: 'bottom',
+        customScopesAlias: 'custom',
+        emptyScopesAlias: 'empty',
+        upperCaseSubject: false,
+        markBreakingChangeMode: false,
+        allowBreakingChanges: ['feat', 'fix'],
+        breaklineNumber: 100,
+        breaklineChar: '|',
+        skipQuestions: [],
+        issuePrefixes: [
+            { value: 'closed', name: 'closed:   ISSUES has been processed' }
+        ],
+        customIssuePrefixAlign: 'top',
+        emptyIssuePrefixAlias: 'skip',
+        customIssuePrefixAlias: 'custom',
+        allowCustomIssuePrefix: true,
+        allowEmptyIssuePrefix: true,
+        confirmColorize: true,
+        maxHeaderLength: Infinity,
+        maxSubjectLength: Infinity,
+        minSubjectLength: 0,
+        scopeOverrides: undefined,
+        defaultBody: '',
+        defaultIssues: '',
+        defaultScope: '',
+        defaultSubject: ''
+    }
+}
+```
+
+-   不符合angular规范，表情在type前面显示
+
+```js
+/** @type {import('cz-git').UserConfig} */
+module.exports = {
+    extends: ['gitmoji'],
+    rules: {
+        // @see: https://commitlint.js.org/#/reference-rules
+    },
+    prompt: {
+        alias: { fd: 'docs: fix typos' },
+        messages: {
+            type: "Select the type of change that you're committing:",
+            scope: 'Denote the SCOPE of this change (optional):',
+            customScope: 'Denote the SCOPE of this change:',
+            subject:
+                'Write a SHORT, IMPERATIVE tense description of the change:\n',
+            body: 'Provide a LONGER description of the change (optional). Use "|" to break new line:\n',
+            breaking:
+                'List any BREAKING CHANGES (optional). Use "|" to break new line:\n',
+            footerPrefixesSelect:
+                'Select the ISSUES type of changeList by this change (optional):',
+            customFooterPrefix: 'Input ISSUES prefix:',
+            footer: 'List any ISSUES by this change. E.g.: #31, #34:\n',
+            generatingByAI: 'Generating your AI commit subject...',
+            generatedSelectByAI: 'Select suitable subject by AI generated:',
+            confirmCommit:
+                'Are you sure you want to proceed with the commit above?'
+        },
+        types: [
+            {
+                value: ':sparkles: feat',
+                name: ' ✨ feat:     A new feature',
+                emoji: '✨'
+            },
+            {
+                value: ':bug: fix',
+                name: '🐛 fix:        A bug fix',
+                emoji: '🐛'
+            },
+            {
+                value: ':memo: docs',
+                name: '📝  docs:     Documentation only changes',
+                emoji: '📝'
+            },
+            {
+                value: ':lipstick: style',
+                name: '💄  style:    Changes that do not affect the meaning of the code',
+                emoji: '💄'
+            },
+            {
+                value: ':recycle: refactor',
+                name: '♻️  refactor:   A code change that neither fixes a bug nor adds a feature',
+                emoji: '♻️'
+            },
+            {
+                value: ':zap: perf',
+                name: '⚡️ perf:       A code change that improves performance',
+                emoji: '⚡️'
+            },
+            {
+                value: ':white_check_mark: test',
+                name: '✅  test:     Adding missing tests or correcting existing tests',
+                emoji: '✅ '
+            },
+            {
+                value: ':package: build',
+                name: ' 📦️  build:    Changes that affect the build system or external dependencies',
+                emoji: '📦️'
+            },
+            {
+                value: ':ferris_wheel: ci',
+                name: ' 🎡  ci:   Changes to our CI configuration files and scripts',
+                emoji: '🎡'
+            },
+            {
+                value: ':hammer: chore',
+                name: "  🔨  chore:   Other changes that don't modify src or test files",
+                emoji: '🔨 '
+            },
+            {
+                value: ':rewind: revert',
+                name: ' ⏪️ revert:   Reverts a previous commit',
+                emoji: '⏪️'
+            }
+        ],
+        useEmoji: false,
+        emojiAlign: 'center',
+        useAI: false,
+        aiNumber: 1,
+        themeColorCode: '',
+        scopes: [],
+        allowCustomScopes: true,
+        allowEmptyScopes: true,
+        customScopesAlign: 'bottom',
+        customScopesAlias: 'custom',
+        emptyScopesAlias: 'empty',
+        upperCaseSubject: false,
+        markBreakingChangeMode: false,
+        allowBreakingChanges: ['feat', 'fix'],
+        breaklineNumber: 100,
+        breaklineChar: '|',
+        skipQuestions: [],
+        issuePrefixes: [
+            { value: 'closed', name: 'closed:   ISSUES has been processed' }
+        ],
+        customIssuePrefixAlign: 'top',
+        emptyIssuePrefixAlias: 'skip',
+        customIssuePrefixAlias: 'custom',
+        allowCustomIssuePrefix: true,
+        allowEmptyIssuePrefix: true,
+        confirmColorize: true,
+        maxHeaderLength: Infinity,
+        maxSubjectLength: Infinity,
+        minSubjectLength: 0,
+        scopeOverrides: undefined,
+        defaultBody: '',
+        defaultIssues: '',
+        defaultScope: '',
+        defaultSubject: ''
+    }
+}
+```
+
 在终端运行：
 
 ```bash
@@ -286,10 +798,46 @@ npm run commit
 
 husky + commitlint,他们可以在你commit的时候校验你的commit信息是否是规范的，如果不是就提交不了。
 
+```bash
+npm install -D @commitlint/cli  husky
+
+npm install  -D  @commitlint/config-conventional 或  npm install  -D  commitlint-config-gitmoji
+
+```
+
 :::tip
-commitlint : git commit 时对于 commit message 进行规范检查的工具，保证团队的一致性。
+[@commitlint/cli](https://commitlint.js.org/#/guides-local-setup): git commit 时对于 commit message 进行规范检查的工具，保证团队的一致性。
+
+@commitlint/config-conventional:强制执行angular规范可共享配置（基于angular规范）。
+
+如果是 emoji 开头的commit规范信息（在type之前加表情）commitlint 并没有内置合适的共享配置，@commitlint/config-conventional不再适用，在网上找到了一个大佬写的commitlint-config-gitmoji 用着还不错
 
 husky: 顾名思义，这个工具是用来在git钩子里运行命令有问题咬住你过不去钩子的。一般用来执行eslint、run test、commitlint 相关命令的。
 :::
+
+配置.commitlintrc.js
+
+-   符合angluar版的：
+
+```js
+//.commitlintrc.js
+/** @type {import('cz-git').UserConfig} */
+module.exports = {
+   extends: ['@commitlint/config-conventional'],
+    ...
+}
+```
+
+-   不符合angluar版： （emoji 开头的commit规范信息）
+
+```js
+//.commitlintrc.js
+/** @type {import('cz-git').UserConfig} */
+module.exports = {
+    extends: ['gitmoji'],
+    ...
+}
+
+```
 
 ## 生成CHANGELOG
