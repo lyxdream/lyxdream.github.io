@@ -309,7 +309,7 @@ module.exports = {
 
 如果需要在feat之前加表情包：把 types 字段修改为如下
 
-```js{3,4}
+```js{5,6}
 //.cz-config.js
 module.exports = {
   types: [
@@ -379,7 +379,7 @@ git cz
 
 效果如下：
 
-:::tip 注意
+::: tip 注意
 如果需要在type之前加表情，校验得时候需要更换commitlint-config-conventional （基于 Angular 约定），在type前面加表情不符合Angular规范
 
 :::
@@ -796,10 +796,14 @@ npm run commit
 
 ## 校验规范
 
-husky + commitlint,他们可以在你commit的时候校验你的commit信息是否是规范的，如果不是就提交不了。
+[husky](https://typicode.github.io/husky/getting-started.html) + [commitlint](https://commitlint.js.org/#/guides-local-setup),他们可以在你commit的时候校验你的commit信息是否是规范的，如果不是就提交不了。
+
+### 校验commit信息
+
+先安装commitlint
 
 ```bash
-npm install -D @commitlint/cli  husky
+npm install -D @commitlint/cli
 
 npm install  -D  @commitlint/config-conventional 或  npm install  -D  commitlint-config-gitmoji
 
@@ -812,10 +816,10 @@ npm install  -D  @commitlint/config-conventional 或  npm install  -D  commitlin
 
 如果是 emoji 开头的commit规范信息（在type之前加表情）commitlint 并没有内置合适的共享配置，@commitlint/config-conventional不再适用，在网上找到了一个大佬写的commitlint-config-gitmoji 用着还不错
 
-husky: 顾名思义，这个工具是用来在git钩子里运行命令有问题咬住你过不去钩子的。一般用来执行eslint、run test、commitlint 相关命令的。
+[husky](https://typicode.github.io/husky/getting-started.html): 顾名思义，这个工具是用来在git钩子里运行命令有问题咬住你过不去钩子的。一般用来执行eslint、run test、commitlint 相关命令的。
 :::
 
-配置.commitlintrc.js
+新建一个 .commitlintrc.js 或 commitlint.config.js(如果用的cz-git，前面已经建过了，这里只需要补充一下就行)，commitlint 会找到这个文件，按文件中指定的 extends 去校验 commit 信息
 
 -   符合angluar版的：
 
@@ -838,6 +842,102 @@ module.exports = {
     ...
 }
 
+```
+
+commitlint都设置好了，下面我们要实现提交时强制校验（使用husky强制校验commit信息）
+
+安装[husky](https://typicode.github.io/husky/getting-started.html)
+
+```bash
+npm install husky -D
+
+# 执行以下命令，会在项目根目录下生成一个.kusky文件夹。(husky>=5.0）
+npx husky install
+
+# 执行以下命令，package.json会自动多一行命令
+npm pkg set scripts.prepare="husky install"
+```
+
+```json{4}
+//  package.json
+{
+  "scripts": {
+    "prepare": "husky install"
+  }
+}
+```
+
+:::tip
+Yarn 2+ 不支持prepare
+:::
+
+在.husky 文件夹内创建 commit-msg 文件,执行如下命令：
+
+```js
+ npx husky add .husky/commit-msg 'npx --no -- commitlint --edit "$1"'
+```
+
+会发现.husky多了一个文件commit-msg
+
+```bash
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npx --no -- commitlint --edit $1
+
+```
+
+我们再提交代码的时候会走到commit-msg这个钩子里，执行我们写好的校验commit的命令，当commit信息不符合规范时，commitlint会提示哪里规则不对，husky会拦住当前commit信息提不上了。就实现了强制遵守定义好的commit规范，不能随便提代码了！
+
+图上图上图
+
+### 校验代码规范
+
+虽然咱们编辑器都有eslint插件自动修复代码，但是也可能有的同学没安装，为了以防万一，多人协作写一个项目，为了保证规范统一，就需要在commit前校验代码规范。
+
+接下来在package.json文件里面配置
+
+```json
+ "lint": "eslint  校验的目录（如./packages）  --ext .js,.ts,.tsx,.vue,.mjs,.cjs",
+```
+
+> 直接在 pre-commit 钩子里执行 npm run lint，这样有个问题，对于大型项目，在每个文件上运行 ESLint 可能会消耗大量的时间。
+> 而 lint-staged 就能解决这个问题，它只会校验你修改的那部分文件
+
+[lint-staged](https://github.com/lint-staged/lint-staged) ,它的作用是只在当前提交中对已更改的文件运行 pre-commit hooks。并且还能对代码进行更多的设置。话不多说，上代码。
+
+安装 lint-staged
+
+```bash
+npm install -D lint-staged
+```
+
+```json
+//package.json
+  "scripts":{
+      "lint:staged": "lint-staged",
+       "lint": "eslint 校验的目录（如./packages）  --ext .js,.ts,.tsx,.mjs,.cjs",
+  },
+  "lint-staged": {
+    "*.{md,json,ts,tsx,js,scss}": "prettier --write",
+    "*.{ts,tsx,js,jsx}": "eslint --fix"
+  }
+
+```
+
+使用 pre-commit 检测提交时代码规范
+
+```js
+ npx husky add .husky/pre-commit 'npx lint-staged'
+```
+
+生成文件.husky/pre-commit
+
+```bash
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npx --no-install lint-staged
 ```
 
 ## 生成CHANGELOG
